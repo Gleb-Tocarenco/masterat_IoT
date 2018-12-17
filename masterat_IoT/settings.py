@@ -25,7 +25,7 @@ SECRET_KEY = '@heioj0ib3!2o*vv8xu=1nh6nao2t0ji+*d4hkc4$8305a__-*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['polar-chamber-20196.herokuapp.com']
 
 
 # Application definition
