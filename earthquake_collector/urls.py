@@ -3,5 +3,5 @@ from .views import SeismicRecordView
 
 
 urlpatterns = [
-    path('seismic-records', SeismicRecordView.as_view())
+    path('seismic-records/', SeismicRecordView.as_view())
 ]
