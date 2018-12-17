@@ -1,0 +1,1 @@
+web: gunicorn masterat_IoT.wsgi --log-file -
