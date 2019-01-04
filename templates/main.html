@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        #map {
+            height: 100%;
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+
+    function loadCoordinates(map) {
+      var xhttp = new XMLHttpRequest(map);
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var locations = JSON.parse(this.responseText);
+            var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            var markers = locations.map(function (location, i) {
+                return new google.maps.Marker({
+                    position: {lat: parseFloat(location.latitude), lng: parseFloat(location.longitude)},
+                    label: labels[i % labels.length]
+                });
+            });
+            var markerCluster = new MarkerClusterer(map, markers,
+                {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'}
+            );
+
+        }
+      };
+      xhttp.open("GET", "/seismic-records/", true);
+      xhttp.send();
+    }
+
+    function initMap() {
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: {lat: 28, lng: 47}
+        });
+        loadCoordinates(map);
+    }
+
+    </script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFzM1FeZFJHo8wtfpdoTeXM9oWeha92WI&callback=initMap">
+    </script>
+
+</body>
+</html>

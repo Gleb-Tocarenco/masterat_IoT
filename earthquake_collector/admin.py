@@ -1,3 +1,5 @@
 from django.contrib import admin
+from solo.admin import SingletonModelAdmin
+from earthquake_collector.models import SeismicNotification
 
-# Register your models here.
+admin.site.register(SeismicNotification, SingletonModelAdmin)
