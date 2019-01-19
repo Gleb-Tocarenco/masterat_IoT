@@ -5,7 +5,7 @@ from .models import SeismicRecord, SeismicNotification
 
 
 def send_notification(sender, instance, **kwargs):
-    notification, _ = SeismicNotification.objects.get_or_create(amplitude=5)
+    notification, _ = SeismicNotification.objects.get_or_create(amplitude=3)
 
     if instance.amplitude >= notification.amplitude:
         bot = telegram.Bot(token='665012119:AAHpeitpB1cRpSRzFs2r_6gVVZq7B58k6EM')
